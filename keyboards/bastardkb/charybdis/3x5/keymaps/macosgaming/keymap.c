@@ -59,6 +59,8 @@ static uint16_t auto_pointer_layer_timer = 0;
 #    define SNIPING KC_NO
 #endif // !POINTING_DEVICE_ENABLE
 
+#define KC_PSCM SCMD(KC_5)  // Screenshot tool on Mac OS
+
 // clang-format off
 /** \brief QWERTY layout (3 rows, 10 columns). */
 #define LAYOUT_LAYER_BASE                                                                     \
@@ -90,7 +92,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  * column.
  */
 #define LAYOUT_LAYER_FUNCTION                                                                 \
-    _______________DEAD_HALF_ROW_______________, KC_PSCR,   KC_F7,   KC_F8,   KC_F9,  KC_F12, \
+    _______________DEAD_HALF_ROW_______________, KC_PSCM,   KC_F7,   KC_F8,   KC_F9,  KC_F12, \
     ______________HOME_ROW_CAGS_L______________, KC_SCRL,   KC_F4,   KC_F5,   KC_F6,  KC_F11, \
     _______________DEAD_HALF_ROW_______________, KC_PAUS,   KC_F1,   KC_F2,   KC_F3,  KC_F10, \
                       XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
