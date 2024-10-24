@@ -59,6 +59,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #    define SNIPING KC_NO
 #endif // !POINTING_DEVICE_ENABLE
 
+#define  KC_EMJ G(C(KC_SPC))  // Emoji keyboard shortcut on Mac OS
 #define KC_PSCM SCMD(KC_5)  // Screenshot tool on Mac OS
 #define KC_SIRI KC_F18  // F18 should be set as Keyboard shortcut in Siri's settings
 
@@ -96,7 +97,7 @@ static uint16_t auto_pointer_layer_timer = 0;
     _______________DEAD_HALF_ROW_______________, KC_PSCM,   KC_F7,   KC_F8,   KC_F9,  KC_F12, \
     ______________HOME_ROW_CAGS_L______________, KC_LPAD,   KC_F4,   KC_F5,   KC_F6,  KC_F11, \
     _______________DEAD_HALF_ROW_______________, KC_MCTL,   KC_F1,   KC_F2,   KC_F3,  KC_F10, \
-                      XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX
+                      XXXXXXX, XXXXXXX, _______, XXXXXXX,  KC_EMJ
 
 /**
  * \brief Navigation layer.
