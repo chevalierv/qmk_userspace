@@ -60,6 +60,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #endif // !POINTING_DEVICE_ENABLE
 
 #define KC_PSCM SCMD(KC_5)  // Screenshot tool on Mac OS
+#define KC_SIRI KC_F18  // F18 should be set as Keyboard shortcut in Siri's settings
 
 // clang-format off
 /** \brief QWERTY layout (3 rows, 10 columns). */
@@ -119,7 +120,7 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define LAYOUT_LAYER_MEDIA                                                                    \
     _______________DEAD_HALF_ROW_______________, XXXXXXX,RGB_RMOD, RGB_TOG, RGB_MOD, XXXXXXX, \
     ______________HOME_ROW_CAGS_L______________, KC_MRWD, KC_VOLD, KC_MUTE, KC_VOLU, KC_MFFD, \
-    _______________DEAD_HALF_ROW_______________, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, \
+    _______________DEAD_HALF_ROW_______________, XXXXXXX, KC_SIRI, XXXXXXX, XXXXXXX, XXXXXXX, \
                       _______, XXXXXXX, XXXXXXX, KC_MSTP, KC_MPLY
 
 /** \brief Mouse emulation and pointer functions. */
