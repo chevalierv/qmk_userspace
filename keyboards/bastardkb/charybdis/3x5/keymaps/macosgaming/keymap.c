@@ -22,12 +22,14 @@
 
 enum charybdis_keymap_layers {
     LAYER_BASE = 0,
+    LAYER_GAMING_BASE,
     LAYER_FUNCTION,
     LAYER_NAVIGATION,
     LAYER_MEDIA,
     LAYER_POINTER,
     LAYER_NUMERAL,
     LAYER_SYMBOLS,
+    LAYER_GAMING_NUMERAL,
 };
 
 // Automatically enable sniping-mode on the pointer layer.
@@ -51,6 +53,10 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define ENT_SYM LT(LAYER_SYMBOLS, KC_ENT)
 #define BSP_NUM LT(LAYER_NUMERAL, KC_BSPC)
 #define _L_PTR(KC) LT(LAYER_POINTER, KC)
+
+#define LY_BASE DF(LAYER_BASE)
+#define LY_GAME DF(LAYER_GAMING_BASE)
+#define ESC_NUM LT(LAYER_GAMING_NUMERAL, KC_ESC)
 
 #ifndef POINTING_DEVICE_ENABLE
 #    define DRGSCRL KC_NO
@@ -94,7 +100,7 @@ static uint16_t auto_pointer_layer_timer = 0;
  * column.
  */
 #define LAYOUT_LAYER_FUNCTION                                                                 \
-    _______________DEAD_HALF_ROW_______________, KC_PSCM,   KC_F7,   KC_F8,   KC_F9,  KC_F12, \
+    XXXXXXX, XXXXXXX, XXXXXXX, LY_BASE, LY_GAME, KC_PSCM,   KC_F7,   KC_F8,   KC_F9,  KC_F12, \
     ______________HOME_ROW_CAGS_L______________, KC_LPAD,   KC_F4,   KC_F5,   KC_F6,  KC_F11, \
     _______________DEAD_HALF_ROW_______________, KC_MCTL,   KC_F1,   KC_F2,   KC_F3,  KC_F10, \
                       XXXXXXX, XXXXXXX, _______, XXXXXXX,  KC_EMJ
@@ -152,10 +158,33 @@ static uint16_t auto_pointer_layer_timer = 0;
  * `KC_RPRN`.
  */
 #define LAYOUT_LAYER_SYMBOLS                                                                  \
-    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, _______________DEAD_HALF_ROW_______________, \
+    KC_LCBR, KC_AMPR, KC_ASTR, KC_LPRN, KC_RCBR, LY_GAME, LY_BASE, XXXXXXX, XXXXXXX, XXXXXXX, \
     KC_COLN,  KC_DLR, KC_PERC, KC_CIRC, KC_PLUS, ______________HOME_ROW_CAGS_R______________, \
  S(KC_NUBS), KC_EXLM,   KC_AT, KC_HASH,S(KC_NUHS), _______________DEAD_HALF_ROW_______________, \
                       KC_LPRN, KC_RPRN, KC_UNDS, _______, XXXXXXX
+
+/*
+ * Gaming layers used on the Charybdis Nano.
+ */
+
+ /** \brief QWERTY Gaming layout (3 rows, 10 columns). */
+#define LAYOUT_GAMING_LAYER_BASE                                                              \
+       KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P, \
+       KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L, KC_QUOT, \
+       KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH, \
+                      ESC_NUM,  KC_SPC, TAB_FUN, ENT_SYM, BSP_NUM
+
+/**
+ * \brief Gaming numeral layout.
+ *
+ * Tertiary right-hand layer is numerals and symbols. Numerals are in the standard numpad locations
+ * with symbols in the remaining positions. `KC_DOT` is duplicated from the base layer.
+ */
+#define LAYOUT_GAMING_LAYER_NUMERAL                                                           \
+    _______________DEAD_HALF_ROW_______________, KC_LBRC,    KC_7,    KC_8,    KC_9, KC_RBRC, \
+    ______________HOME_ROW_CAGS_L______________, KC_SCLN,    KC_4,    KC_5,    KC_6,  KC_EQL, \
+    _______________DEAD_HALF_ROW_______________, KC_NUBS,    KC_1,    KC_2,    KC_3, KC_NUHS, \
+                      _______, XXXXXXX, XXXXXXX, KC_MINS,    KC_0
 
 /**
  * \brief Add Home Row mod to a layout.
@@ -208,12 +237,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [LAYER_BASE] = LAYOUT_wrapper(
     POINTER_MOD(HOME_ROW_MOD_CAGS(LAYOUT_LAYER_BASE))
   ),
+  [LAYER_GAMING_BASE] = LAYOUT_wrapper(POINTER_MOD(LAYOUT_GAMING_LAYER_BASE)),
   [LAYER_FUNCTION] = LAYOUT_wrapper(LAYOUT_LAYER_FUNCTION),
   [LAYER_NAVIGATION] = LAYOUT_wrapper(LAYOUT_LAYER_NAVIGATION),
   [LAYER_MEDIA] = LAYOUT_wrapper(LAYOUT_LAYER_MEDIA),
   [LAYER_NUMERAL] = LAYOUT_wrapper(LAYOUT_LAYER_NUMERAL),
   [LAYER_POINTER] = LAYOUT_wrapper(LAYOUT_LAYER_POINTER),
   [LAYER_SYMBOLS] = LAYOUT_wrapper(LAYOUT_LAYER_SYMBOLS),
+  [LAYER_GAMING_NUMERAL] = LAYOUT_wrapper(LAYOUT_GAMING_LAYER_NUMERAL),
 };
 // clang-format on
 
