@@ -39,3 +39,8 @@
 #   define CHARYBDIS_DRAGSCROLL_REVERSE_Y // inverts vertical scrolling
 
 #endif // POINTING_DEVICE_ENABLE
+
+// Handedness pin
+#undef MASTER_RIGHT
+#define SPLIT_HAND_PIN GP15
+#define SPLIT_HAND_PIN_LOW_IS_LEFT  // High -> right, Low -> left.
