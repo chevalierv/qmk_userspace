@@ -44,3 +44,7 @@
 #undef MASTER_RIGHT
 #define SPLIT_HAND_PIN GP15
 #define SPLIT_HAND_PIN_LOW_IS_LEFT  // High -> right, Low -> left.
+
+// Disable auto-repeat ability of a dual-role key and activate the hold function instead.
+// See https://docs.qmk.fm/tap_hold#quick-tap-term
+#define QUICK_TAP_TERM 0
