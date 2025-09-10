@@ -69,6 +69,28 @@ static uint16_t auto_pointer_layer_timer = 0;
 #define KC_PSCM SCMD(KC_5)  // Screenshot tool on Mac OS
 #define KC_SIRI KC_F18  // F18 should be set as Keyboard shortcut in Siri's settings
 
+// Override to define the behavior of CLIPBOARD_HIST
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+
+    // ⌘ + ⇧ + V → Clipboard history
+    case KC_V:
+      if (record->event.pressed) {
+        bool isShifted = get_mods() & MOD_MASK_SHIFT;
+        bool isGUIpressed = get_mods() & MOD_MASK_GUI;
+        if (isShifted & isGUIpressed) {
+          del_mods(MOD_MASK_SHIFT);
+          tap_code(KC_SPC);
+          wait_ms(200);
+          tap_code(KC_4);
+          return false; // Skip all further processing of this key
+        }
+      }
+      return true;
+  }
+  return true; // Process all other keycodes normally
+}
+
 // clang-format off
 /** \brief QWERTY layout (3 rows, 10 columns). */
 #define LAYOUT_LAYER_BASE                                                                     \
