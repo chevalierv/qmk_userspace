@@ -87,6 +87,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       }
       return true;
+
+    // Shift + Backspace → Delete
+    case KC_BSPC:
+      if (record->event.pressed) {
+        if (get_mods() & MOD_MASK_SHIFT) {
+          tap_code(KC_DEL);
+          return false; // Skip all further processing of this key
+        }
+      }
+      return true;
   }
   return true; // Process all other keycodes normally
 }
